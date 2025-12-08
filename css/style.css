@@ -1,0 +1,83 @@
+/* NAVBAR */
+.navbar-brand span {
+  font-size: 1rem;
+}
+
+.nav-link {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 14px;
+  transition: .3s;
+}
+
+.nav-link:hover {
+  color: #ffc107 !important;
+}
+
+.navbar {
+  padding: 0.5rem 0 !important;
+}
+
+/* HERO */
+.hero {
+  height: 95vh;
+  background: url('/img/pexels-heyho-8146158.webp') center/cover no-repeat;
+  position: relative;
+}
+
+/* Overlay sombre */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+/* Texte au-dessus de l’overlay */
+.hero > .container {
+  position: relative;
+  z-index: 2;
+}
+
+
+.service-card {
+  transition: .3s ease;
+  border: 1px solid #eee;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.aa-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.aa-img {
+  width: 100%;
+  height: 260px; /* même taille partout */
+  object-fit: cover;
+  transition: transform .4s ease;
+}
+
+.aa-item:hover .aa-img {
+  transform: scale(1.06);
+}
+
+.aa-label {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  padding: 6px 12px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-size: 14px;
+  border-radius: 6px;
+  backdrop-filter: blur(3px);
+}
+
+
+html, body { width:100%; overflow-x:hidden; }
