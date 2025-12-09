@@ -62,94 +62,93 @@ updateTimeAgo();
 setInterval(updateTimeAgo, 60000);
 
 // ===== GESTION DU SWIPE AVANT/APRÈS =====
-// Système ultra-simplifié et robuste pour tous les appareils mobiles
-
-let swipeState = {};
+// Capture des événements tactiles AVANT GLightbox
 
 document.addEventListener('touchstart', function(e) {
-  const item = e.target.closest('.aa-item');
-  if (!item) return;
+  // Vérifier que c'est sur une image de galerie
+  const aaItem = e.target.closest('.aa-item');
+  if (!aaItem) return;
   
-  const links = item.querySelectorAll('a.glightbox');
+  const links = aaItem.querySelectorAll('a.glightbox');
   if (links.length < 2) return;
   
-  const itemId = Math.random();
-  swipeState[itemId] = {
-    item: item,
-    links: links,
-    startX: e.touches[0].clientX,
-    startY: e.touches[0].clientY,
-    itemId: itemId
-  };
-}, { passive: true });
+  // Stocker les données de swipe
+  window.swipeStartX = e.touches[0].clientX;
+  window.swipeStartY = e.touches[0].clientY;
+  window.swipeItem = aaItem;
+}, true); // Capture phase pour priorité
 
 document.addEventListener('touchend', function(e) {
-  const item = e.target.closest('.aa-item');
-  if (!item) return;
+  if (!window.swipeStartX || !window.swipeItem) return;
   
-  const links = item.querySelectorAll('a.glightbox');
-  if (links.length < 2) return;
-  
-  // Créer une clé unique basée sur le premier lien
-  const galleryId = links[0].getAttribute('data-gallery');
-  
-  // Récupérer le dernier état enregistré
-  const states = Object.values(swipeState);
-  if (states.length === 0) return;
-  
-  const state = states[states.length - 1];
   const endX = e.changedTouches[0].clientX;
   const endY = e.changedTouches[0].clientY;
   
-  const diffX = state.startX - endX;
-  const diffY = state.startY - endY;
+  const diffX = window.swipeStartX - endX;
+  const diffY = window.swipeStartY - endY;
   
-  // Vérifier que c'est un swipe horizontal, pas vertical
-  if (Math.abs(diffY) > Math.abs(diffX)) return;
+  // Vérifier que c'est un swipe horizontal
+  if (Math.abs(diffY) > Math.abs(diffX) * 0.5) {
+    window.swipeStartX = null;
+    return;
+  }
   
   // Seuil minimum
-  const threshold = 50;
-  if (Math.abs(diffX) < threshold) return;
+  if (Math.abs(diffX) < 40) {
+    window.swipeStartX = null;
+    return;
+  }
+  
+  const links = window.swipeItem.querySelectorAll('a.glightbox');
+  if (links.length < 2) {
+    window.swipeStartX = null;
+    return;
+  }
   
   // Trouver l'image visible
   let currentIndex = 0;
   links.forEach((link, idx) => {
-    if (!link.classList.contains('d-none')) {
+    if (!link.classList.contains('d-none') && link.offsetParent !== null) {
       currentIndex = idx;
     }
   });
   
-  // Déterminer la direction
+  // Calculer le nouvel index
   let nextIndex = currentIndex;
   if (diffX > 0) {
-    // Swipe gauche = image suivante
+    // Swipe gauche = suivant
     nextIndex = (currentIndex + 1) % links.length;
   } else {
-    // Swipe droit = image précédente
+    // Swipe droit = précédent
     nextIndex = currentIndex === 0 ? links.length - 1 : currentIndex - 1;
   }
   
-  // Changer l'image
-  if (nextIndex !== currentIndex) {
-    links.forEach((link, idx) => {
-      if (idx === nextIndex) {
-        link.classList.remove('d-none');
-      } else {
-        link.classList.add('d-none');
-      }
-    });
-    
-    // Recharger GLightbox
-    if (typeof window.glightboxInstance !== 'undefined' && window.glightboxInstance) {
-      try {
-        window.glightboxInstance.reload();
-      } catch(e) {}
-    }
+  // Éviter de changer si déjà sur la même image
+  if (nextIndex === currentIndex) {
+    window.swipeStartX = null;
+    return;
   }
   
-  // Nettoyer l'état
-  delete swipeState[state.itemId];
-}, { passive: true });
+  // Appliquer le changement
+  links.forEach((link, idx) => {
+    if (idx === nextIndex) {
+      link.classList.remove('d-none');
+      link.style.display = 'block';
+    } else {
+      link.classList.add('d-none');
+      link.style.display = 'none';
+    }
+  });
+  
+  // Recharger GLightbox si disponible
+  if (typeof window.glightboxInstance !== 'undefined' && window.glightboxInstance) {
+    try {
+      window.glightboxInstance.reload();
+    } catch(err) {}
+  }
+  
+  window.swipeStartX = null;
+}, true); // Capture phase
 
 // Filtrage galerie
 function filterGallery(filter) {

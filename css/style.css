@@ -129,6 +129,7 @@ html, body {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  width: 100%;
 }
 
 a.glightbox {
@@ -137,15 +138,19 @@ a.glightbox {
   cursor: pointer;
   -webkit-user-select: none;
   user-select: none;
+  width: 100%;
+  touch-action: none;
 }
 
 a.glightbox:not(.d-none) {
   pointer-events: auto;
+  display: block !important;
 }
 
 a.glightbox.d-none {
   display: none !important;
   pointer-events: none;
+  visibility: hidden;
 }
 
 .aa-img {
@@ -158,6 +163,7 @@ a.glightbox.d-none {
   -webkit-user-select: none;
   user-select: none;
   touch-action: none;
+  pointer-events: auto;
 }
 
 .aa-item:active .aa-img {
