@@ -6,15 +6,6 @@ AOS.init({
   offset: 80
 });
 
-// Init GLightbox - config simple et stable
-window.glightboxInstance = GLightbox({
-  selector: '.glightbox:not(.d-none)',
-  touchNavigation: false,
-  loop: true,
-  closeButton: true,
-  keyboard: true
-});
-
 // Swiper Main
 const mainSwiper = new Swiper('.swiper-main', {
   loop: true,
