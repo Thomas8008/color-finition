@@ -300,3 +300,83 @@ document.querySelectorAll('.chip').forEach(chip => {
       filterGallery(firstChip.getAttribute('data-filter'));
     }
   });
+
+  // ==================== GOOGLE REVIEWS CAROUSEL ====================
+  const mockGoogleReviews = [
+    {
+      author: "Paul Drouart",
+      rating: 5,
+      text: "Nous avons fait appel à Monsieur Leclercq pour une modification à notre salle de bain. Très professionnel, travail de qualité. Je recommande.",
+      time: "il y a 1 mois",
+      avatar: "P"
+    },
+    {
+      author: "Ib Mugi",
+      rating: 5,
+      text: "Très bon peintre. Travail soigné et professionnel. Je suis très satisfait du résultat.",
+      time: "il y a 2 mois",
+      avatar: "I"
+    },
+    {
+      author: "Thomas",
+      rating: 5,
+      text: "Excellent travail, ponctuel et très professionnel. Je recommande vivement pour vos travaux de peinture.",
+      time: "il y a 3 mois",
+      avatar: "T"
+    },
+    {
+      author: "Semedo",
+      rating: 5,
+      text: "Service impeccable et résultat à la hauteur de mes attentes. Merci beaucoup!",
+      time: "il y a 1 mois",
+      avatar: "S"
+    }
+  ];
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.getElementById('google-reviews-carousel');
+    if (!carousel) return;
+
+    mockGoogleReviews.forEach(review => {
+      const card = document.createElement('div');
+      card.className = 'google-review-card';
+      
+      const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+      
+      card.innerHTML = `
+        <div class="google-review-header">
+          <div class="google-review-avatar">${review.avatar}</div>
+          <div class="google-review-info">
+            <h6>${review.author}</h6>
+            <div class="google-review-meta">
+              <span class="google-review-stars">${stars}</span>
+              <span>${review.time}</span>
+            </div>
+          </div>
+        </div>
+        <p class="google-review-text">${review.text}</p>
+      `;
+      
+      carousel.appendChild(card);
+    });
+  });
+
+  function scrollReviewsCarousel(direction) {
+    const carousel = document.getElementById('google-reviews-carousel');
+    if (!carousel) return;
+    
+    const scrollAmount = 350;
+    const currentScroll = carousel.scrollLeft;
+    
+    if (direction === 'prev') {
+      carousel.scrollTo({
+        left: currentScroll - scrollAmount,
+        behavior: 'smooth'
+      });
+    } else if (direction === 'next') {
+      carousel.scrollTo({
+        left: currentScroll + scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  }

@@ -5,10 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!-- SEO -->
-<title>Color Finition - Peinture & Sols à Amiens</title>
-<meta name="description" content="Color Finition à Amiens : Peinture intérieure, extérieure, sols, façades, boiseries. Artisan qualifié pour vos travaux de rénovation. Devis rapide." />
-<meta name="keywords" content="peinture Amiens, artisan peintre Amiens, sols Amiens, rénovation Amiens, façade, intérieur, extérieur" />
+<title>Peintre Amiens - Color Finition | Peinture Intérieure & Extérieure</title>
+<meta name="description" content="Peintre professionnel à Amiens. Color Finition : peinture intérieure, extérieure, sols, façades, boiseries. Artisan qualifié, devis gratuit. ★★★★★ 5 avis Google" />
+<meta name="keywords" content="peintre Amiens, peinture Amiens, artisan peintre, peinture intérieure Amiens, peinture extérieure Amiens, peinture façade Amiens, sols Amiens, rénovation Amiens" />
 <meta name="author" content="Color Finition">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://colorfinition.netlify.app/">
 
 <!-- Open Graph -->
 <meta property="og:title" content="Color Finition - Artisan Peintre & Solier à Amiens" />
@@ -18,6 +20,34 @@
 
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Color Finition",
+  "image": "https://colorfinition.netlify.app/img/475274571_1742118183025081_1065150461817309160_n.jpg",
+  "description": "Artisan peintre à Amiens spécialisé en peinture intérieure, extérieure, sols et façades",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Amiens",
+    "addressLocality": "Amiens",
+    "postalCode": "80000",
+    "addressCountry": "FR"
+  },
+  "telephone": "+33612662284",
+  "url": "https://colorfinition.netlify.app/",
+  "priceRange": "€€",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "ratingCount": "4"
+  },
+  "areaServed": ["Amiens", "Somme", "Picardie"],
+  "serviceType": ["Peinture intérieure", "Peinture extérieure", "Peinture façade", "Sols", "Boiseries"]
+}
+</script>
 
 <!-- Préconnexion (Netlify optimisé) -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
@@ -380,110 +410,38 @@
       <p class="text-muted">Découvrez les vrais témoignages de nos clients satisfaits</p>
     </div>
 
-    <!-- Carrousel Avis -->
+    <!-- Google Reviews Widget (Elfsight-like) -->
     <div class="row justify-content-center mb-5">
-      <div class="col-lg-9" data-aos="fade-up">
-        <div class="avis-carousel">
-          
-          <!-- Avis 1 -->
-          <div class="avis-slide active">
-            <div class="avis-container">
-              <div class="avis-top">
-                <div class="avis-avatar">P</div>
-                <div class="avis-head">
-                  <h5 class="avis-author">Paul Drouart</h5>
-                  <div class="avis-meta">
-                    <span class="avis-stars">★★★★★</span>
-                    <span class="avis-time">il y a 12 heures</span>
-                  </div>
-                </div>
-              </div>
-              <p class="avis-text">"Top je recommande !! Travail appliqué et soigné. Dans les temps pour la fin des travaux. 10/10"</p>
-              <p class="avis-bottom">Visité en décembre</p>
+      <div class="col-lg-12" data-aos="fade-up">
+        <div class="google-reviews-widget">
+          <!-- Header avec note et bouton -->
+          <div class="reviews-header">
+            <div class="reviews-logo-rating">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Google.png" alt="Google" class="google-logo" style="height: 24px; margin-right: 8px;">
+              <span class="reviews-rating">5.0</span>
+              <span class="reviews-stars">★★★★★</span>
+              <span class="reviews-count">(4 avis)</span>
             </div>
+            <a href="https://share.google/oR30iTtbB9WQ1ss8R" target="_blank" class="btn btn-warning btn-sm fw-bold">
+              <i class="bi bi-star-fill"></i> Laisser un avis
+            </a>
           </div>
 
-          <!-- Avis 2 -->
-          <div class="avis-slide">
-            <div class="avis-container">
-              <div class="avis-top">
-                <div class="avis-avatar" style="background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%);">I</div>
-                <div class="avis-head">
-                  <h5 class="avis-author">Ib Mugi</h5>
-                  <div class="avis-meta">
-                    <span class="avis-stars">★★★★★</span>
-                    <span class="avis-time">il y a 12 heures</span>
-                  </div>
-                </div>
-              </div>
-              <p class="avis-text">"Super boulot, passionné et sérieux. Je recommande vivement"</p>
-              <p class="avis-bottom">Visité en octobre</p>
+          <!-- Carousel des avis -->
+          <div class="reviews-carousel-container">
+            <button class="reviews-nav reviews-nav-prev" onclick="scrollReviewsCarousel(-1)">❮</button>
+            
+            <div id="google-reviews-carousel" class="reviews-carousel">
+              <!-- Les avis seront chargés ici -->
             </div>
+            
+            <button class="reviews-nav reviews-nav-next" onclick="scrollReviewsCarousel(1)">❯</button>
           </div>
-
-          <!-- Avis 3 -->
-          <div class="avis-slide">
-            <div class="avis-container">
-              <div class="avis-top">
-                <div class="avis-avatar" style="background: linear-gradient(135deg, #6c757d 0%, #495057 100%);">T</div>
-                <div class="avis-head">
-                  <h5 class="avis-author">Thomas</h5>
-                  <div class="avis-meta">
-                    <span class="avis-stars">★★★★★</span>
-                    <span class="avis-time">il y a 12 heures</span>
-                  </div>
-                </div>
-              </div>
-              <p class="avis-text">"Travail impeccable, soigné et réalisé avec professionnalisme. Je recommande vivement"</p>
-              <p class="avis-bottom">Visité en décembre</p>
-            </div>
-          </div>
-
-          <!-- Avis 4 -->
-          <div class="avis-slide">
-            <div class="avis-container">
-              <div class="avis-top">
-                <div class="avis-avatar" style="background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);">S</div>
-                <div class="avis-head">
-                  <h5 class="avis-author">Semedo</h5>
-                  <div class="avis-meta">
-                    <span class="avis-stars">★★★★★</span>
-                    <span class="avis-time">il y a 12 heures</span>
-                  </div>
-                </div>
-              </div>
-              <p class="avis-text">"Travail de qualité et sérieux, je recommande"</p>
-              <p class="avis-bottom">Visité en décembre</p>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Boutons navigation -->
-        <div class="avis-controls">
-          <button class="avis-btn prev" onclick="prevAvis()">❮</button>
-          <div class="avis-dots">
-            <span class="dot active" onclick="goToSlide(0)"></span>
-            <span class="dot" onclick="goToSlide(1)"></span>
-            <span class="dot" onclick="goToSlide(2)"></span>
-            <span class="dot" onclick="goToSlide(3)"></span>
-          </div>
-          <button class="avis-btn next" onclick="nextAvis()">❯</button>
         </div>
       </div>
     </div>
-
-    <!-- CTA Avis -->
-    <div class="row justify-content-center mt-5">
-      <div class="col-lg-8" data-aos="fade-up">
-        <div class="bg-white p-5 rounded-4 shadow-sm text-center border-top border-warning border-5">
-          <i class="bi bi-google fs-1 text-warning mb-3"></i>
-          <h3 class="fw-bold mb-3">Partagez votre expérience !</h3>
-          <p class="text-muted mb-4">Vous avez apprécié nos services ? Laissez-nous un avis sur Google</p>
           
-          <a href="https://www.google.com/search?q=Color+Finition+Amiens" target="_blank" class="btn btn-warning btn-lg fw-bold">
-            <i class="bi bi-star-fill"></i> Laisser un avis sur Google
-          </a>
+          <!-- Avis 1 -->
         </div>
       </div>
     </div>
