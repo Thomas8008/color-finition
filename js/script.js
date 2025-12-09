@@ -99,9 +99,20 @@ function filterGallery(filter) {
   const items = document.querySelectorAll('.gallery-item');
   
   items.forEach(item => {
-    const category = item.getAttribute('data-category');
-    item.style.display = (category === filter) ? '' : 'none';
+    const categories = item.getAttribute('data-category').split(' ');
+    if (categories.includes(filter)) {
+      item.style.display = '';
+    } else {
+      item.style.display = 'none';
+    }
   });
+  
+  // Refresh AOS animations
+  if (window.AOS) {
+    setTimeout(() => {
+      AOS.refresh();
+    }, 100);
+  }
   
   if (window.glightboxInstance) {
     setTimeout(() => { try { window.glightboxInstance.reload(); } catch(e) {} }, 100);
@@ -229,10 +240,6 @@ document.querySelectorAll('.chip').forEach(chip => {
       <div class="glightbox-container" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.98); z-index: 99999; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px; overflow: hidden;">
         <button class="glightbox-close" style="position: absolute; top: 20px; right: 30px; background: none; border: none; color: white; font-size: 40px; cursor: pointer; z-index: 100000; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;">&times;</button>
         
-        <div style="width: 100%; max-width: 1200px; margin-bottom: 15px; text-align: center;">
-          <h2 style="color: white; margin: 0; font-size: 24px; font-weight: bold;">${title}</h2>
-        </div>
-
         <img src="${imageUrl}" alt="${title}" style="width: 100%; max-width: 1200px; height: auto; max-height: 80vh; object-fit: contain;">
       </div>
     `;
@@ -282,23 +289,14 @@ document.querySelectorAll('.chip').forEach(chip => {
         chip.classList.add('chip-active');
         
         const filter = chip.getAttribute('data-filter');
-        
-        galleryItems.forEach(item => {
-          const categories = item.getAttribute('data-category').split(' ');
-          if (categories.includes(filter)) {
-            item.style.display = 'block';
-            setTimeout(() => item.style.opacity = '1', 10);
-          } else {
-            item.style.opacity = '0';
-            setTimeout(() => item.style.display = 'none', 300);
-          }
-        });
+        filterGallery(filter);
       });
     });
 
-    // Déclencher le filtre initial au chargement
+    // Appliquer le filtre initial sans déclencher l'événement
     const firstChip = chips[0];
     if (firstChip) {
-      firstChip.click();
+      firstChip.classList.add('chip-active');
+      filterGallery(firstChip.getAttribute('data-filter'));
     }
   });
