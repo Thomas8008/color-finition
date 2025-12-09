@@ -33,6 +33,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.0.5/swiper-bundle.min.css">
 <link rel="stylesheet" href="./css/style.css">
 
 <!-- Style Montserrat + Hero -->
@@ -289,60 +290,34 @@
         <button class="chip" data-filter="boiserie">Boiserie</button>
         <button class="chip" data-filter="sol">Sol</button>
         <button class="chip" data-filter="fenetre">Fenêtre</button>
+        <button class="chip" data-filter="avant-apres">Avant/Après</button>
       </div>
     </div>
 
     <div class="row g-4" id="gallery">
 
       <!-- Item 1 - Porte (Extérieur) -->
-      <div class="col-md-6 col-lg-4 gallery-item" data-category="exterieur" data-aos="fade-up">
-        <div class="aa-item">
-          <a href="/img/porte.webp"
-             class="glightbox"
-             data-gallery="aa1">
-            <img src="/img/porte.webp" class="img-fluid aa-img" alt="Porte extérieure">
-          </a>
-
-          <a href="/img/porta-apres.webp"
-             class="glightbox d-none"
-             data-gallery="aa1"></a>
-
+      <div class="col-md-6 col-lg-4 gallery-item" data-category="exterieur avant-apres" data-aos="fade-up">
+        <div class="aa-item" data-before="/img/porte.webp" data-after="/img/porta-apres.webp" data-title="Rénovation Porte Extérieure">
+          <img src="/img/porte.webp" class="img-fluid aa-img" alt="Porte extérieure">
           <span class="aa-label">Avant → Après</span>
           <span class="category-badge">Extérieur</span>
         </div>
       </div>
 
       <!-- Item 2 - Vitrine (Façade) -->
-      <div class="col-md-6 col-lg-4 gallery-item" data-category="facade" data-aos="fade-up" data-aos-delay="100">
-        <div class="aa-item">
-          <a href="/img/vitrine.webp"
-             class="glightbox"
-             data-gallery="aa2">
-            <img src="/img/vitrine.webp" class="img-fluid aa-img" alt="Façade vitrine">
-          </a>
-
-          <a href="/img/vitrine-apres.webp"
-             class="glightbox d-none"
-             data-gallery="aa2"></a>
-
+      <div class="col-md-6 col-lg-4 gallery-item" data-category="facade avant-apres" data-aos="fade-up" data-aos-delay="100">
+        <div class="aa-item" data-before="/img/vitrine.webp" data-after="/img/vitrine-apres.webp" data-title="Rénovation Façade Vitrine">
+          <img src="/img/vitrine.webp" class="img-fluid aa-img" alt="Façade vitrine">
           <span class="aa-label">Avant → Après</span>
           <span class="category-badge">Façade</span>
         </div>
       </div>
 
       <!-- Item 3 - Pièce (Sol) -->
-      <div class="col-md-6 col-lg-4 gallery-item" data-category="sol" data-aos="fade-up" data-aos-delay="200">
-        <div class="aa-item">
-          <a href="/img/piece.webp"
-             class="glightbox"
-             data-gallery="aa3">
-            <img src="/img/piece.webp" class="img-fluid aa-img" alt="Peinture mur intérieur">
-          </a>
-
-          <a href="/img/piece-apres.webp"
-             class="glightbox d-none"
-             data-gallery="aa3"></a>
-
+      <div class="col-md-6 col-lg-4 gallery-item" data-category="sol avant-apres" data-aos="fade-up" data-aos-delay="200">
+        <div class="aa-item" data-before="/img/piece.webp" data-after="/img/piece-apres.webp" data-title="Rénovation Pièce de Vie">
+          <img src="/img/piece.webp" class="img-fluid aa-img" alt="Peinture mur intérieur">
           <span class="aa-label">Avant → Après</span>
           <span class="category-badge">Sol</span>
         </div>
@@ -351,11 +326,7 @@
       <!-- Item 4 - Snapchat (Extérieur) -->
       <div class="col-md-6 col-lg-4 gallery-item" data-category="exterieur" data-aos="fade-up">
         <div class="aa-item">
-          <a href="/img/Snapchat-541315484.jpg"
-             class="glightbox"
-             data-gallery="aa1">
-            <img src="/img/Snapchat-541315484.jpg" class="img-fluid aa-img" alt="Porte extérieure">
-          </a>
+          <img src="/img/Snapchat-541315484.jpg" class="img-fluid aa-img" alt="Porte extérieure">
           <span class="category-badge">Extérieur</span>
         </div>
       </div>
@@ -363,11 +334,7 @@
       <!-- Item 5 - Mur -->
       <div class="col-md-6 col-lg-4 gallery-item" data-category="mur" data-aos="fade-up">
         <div class="aa-item">
-          <a href="/img/mur.jpg"
-             class="glightbox"
-             data-gallery="aa6">
-            <img src="/img/mur.jpg" class="img-fluid aa-img" alt="Mur peint">
-          </a>
+          <img src="/img/mur.jpg" class="img-fluid aa-img" alt="Mur peint">
           <span class="category-badge">Mur</span>
         </div>
       </div>
@@ -375,11 +342,7 @@
       <!-- Item 6 - Façade -->
       <div class="col-md-6 col-lg-4 gallery-item" data-category="facade" data-aos="fade-up">
         <div class="aa-item">
-          <a href="/img/facade.jpg"
-             class="glightbox"
-             data-gallery="aa2">
-            <img src="/img/facade.jpg" class="img-fluid aa-img" alt="Façade rénovée">
-          </a>
+          <img src="/img/facade.jpg" class="img-fluid aa-img" alt="Façade rénovée">
           <span class="category-badge">Façade</span>
         </div>
       </div>
@@ -387,33 +350,19 @@
       <!-- Item 7 - Boiserie -->
       <div class="col-md-6 col-lg-4 gallery-item" data-category="boiserie" data-aos="fade-up">
         <div class="aa-item">
-          <a href="/img/boiserie.jpg"
-             class="glightbox"
-             data-gallery="aa4">
-            <img src="/img/boiserie.jpg" class="img-fluid aa-img" alt="Boiserie peinte">
-          </a>
+          <img src="/img/boiserie.jpg" class="img-fluid aa-img" alt="Boiserie peinte">
           <span class="category-badge">Boiserie</span>
         </div>
       </div>
 
       <!-- Item 8 - Fenêtre -->
-      <div class="col-md-6 col-lg-4 gallery-item" data-category="fenetre" data-aos="fade-up" data-aos-delay="200">
-        <div class="aa-item">
-          <a href="/img/fenetreint.jpg"
-             class="glightbox"
-             data-gallery="aa5">
-            <img src="/img/fenetreint.jpg" class="img-fluid aa-img" alt="Fenêtre avant">
-          </a>
-
-          <a href="/img/fenetreaprs.jpg"
-             class="glightbox"
-             data-gallery="aa5"></a>
-
+      <div class="col-md-6 col-lg-4 gallery-item" data-category="fenetre avant-apres" data-aos="fade-up" data-aos-delay="200">
+        <div class="aa-item" data-before="/img/fenetreint.jpg" data-after="/img/fenetreaprs.jpg" data-title="Rénovation Fenêtre">
+          <img src="/img/fenetreint.jpg" class="img-fluid aa-img" alt="Fenêtre avant">
           <span class="aa-label">Avant → Après</span>
           <span class="category-badge">Fenêtre</span>
         </div>
       </div>
-
 
     </div>
   </div>
@@ -677,11 +626,190 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 
 <script>
+  // ==================== INIT ====================
   AOS.init();
-  const lightbox = GLightbox({ touchNavigation: true });
+
+  // ==================== CUSTOM COMPARISON LIGHTBOX ====================
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.aa-item[data-before][data-after]').forEach(item => {
+      item.style.cursor = 'pointer';
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        showComparisonLightbox(
+          item.dataset.before,
+          item.dataset.after,
+          item.dataset.title || 'Avant/Après'
+        );
+      });
+    });
+  });
+
+  function showComparisonLightbox(beforeUrl, afterUrl, title) {
+    // Vérifier qu'il n'y a pas déjà une lightbox ouverte
+    const existingLightbox = document.getElementById('custom-lightbox-wrapper');
+    if (existingLightbox) {
+      existingLightbox.remove();
+    }
+
+    const lightboxHTML = `
+      <div class="glightbox-container" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.98); z-index: 99999; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px; overflow: hidden;">
+        <button class="glightbox-close" style="position: absolute; top: 20px; right: 30px; background: none; border: none; color: white; font-size: 40px; cursor: pointer; z-index: 100000; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;">&times;</button>
+        
+        <div style="width: 100%; max-width: 1200px; margin-bottom: 15px; text-align: center;">
+          <h2 style="color: white; margin: 0 0 8px 0; font-size: 24px; font-weight: bold;">${title}</h2>
+          <p style="color: #aaa; margin: 0; font-size: 13px;">Glissez le curseur pour comparer</p>
+        </div>
+
+        <div class="comparison-lightbox" style="width: 100%; max-width: 1200px;">
+          <img src="${beforeUrl}" alt="Avant" class="comparison-lightbox-img comparison-lightbox-before" style="width: 100%; height: 100%; object-fit: contain;">
+          <div class="comparison-lightbox-img comparison-lightbox-after" style="background-image: url('${afterUrl}'); width: 100%; height: 100%;"></div>
+          <input type="range" min="0" max="100" value="50" class="comparison-lightbox-slider">
+          <div class="comparison-lightbox-labels">
+            <span class="comparison-lightbox-label-before">AVANT</span>
+            <span class="comparison-lightbox-label-after">APRÈS</span>
+          </div>
+        </div>
+      </div>
+    `;
+
+    const container = document.createElement('div');
+    container.id = 'custom-lightbox-wrapper';
+    container.innerHTML = lightboxHTML;
+    document.body.appendChild(container);
+    document.body.style.overflow = 'hidden';
+
+    const glightboxContainer = container.querySelector('.glightbox-container');
+    const closeBtn = container.querySelector('.glightbox-close');
+    const slider = container.querySelector('.comparison-lightbox-slider');
+    const afterImg = container.querySelector('.comparison-lightbox-after');
+
+    const updateSlider = () => {
+      const value = slider.value;
+      afterImg.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+    };
+
+    slider.addEventListener('input', updateSlider);
+    slider.addEventListener('touchmove', updateSlider);
+    updateSlider();
+
+    let escapeListener = null;
+
+    const closeLightbox = () => {
+      container.remove();
+      document.body.style.overflow = '';
+      if (escapeListener) {
+        document.removeEventListener('keydown', escapeListener);
+      }
+    };
+
+    escapeListener = (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    };
+
+    closeBtn.addEventListener('click', closeLightbox);
+    glightboxContainer.addEventListener('click', (e) => {
+      if (e.target === glightboxContainer) {
+        closeLightbox();
+      }
+    });
+    document.addEventListener('keydown', escapeListener);
+  }
+
+  // ==================== SIMPLE IMAGE LIGHTBOX ====================
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.aa-item:not([data-before]):not([data-after])').forEach(item => {
+      item.style.cursor = 'pointer';
+      item.addEventListener('click', (e) => {
+        const img = item.querySelector('img');
+        if (img) {
+          showSimpleLightbox(img.src, img.alt);
+        }
+      });
+    });
+  });
+
+  function showSimpleLightbox(imageUrl, title) {
+    const existingLightbox = document.getElementById('simple-lightbox-wrapper');
+    if (existingLightbox) {
+      existingLightbox.remove();
+    }
+
+    const lightboxHTML = `
+      <div class="glightbox-container" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.98); z-index: 99999; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px; overflow: hidden;">
+        <button class="glightbox-close" style="position: absolute; top: 20px; right: 30px; background: none; border: none; color: white; font-size: 40px; cursor: pointer; z-index: 100000; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;">&times;</button>
+        
+        <div style="width: 100%; max-width: 1200px; margin-bottom: 15px; text-align: center;">
+          <h2 style="color: white; margin: 0; font-size: 24px; font-weight: bold;">${title}</h2>
+        </div>
+
+        <img src="${imageUrl}" alt="${title}" style="width: 100%; max-width: 1200px; height: auto; max-height: 80vh; object-fit: contain;">
+      </div>
+    `;
+
+    const container = document.createElement('div');
+    container.id = 'simple-lightbox-wrapper';
+    container.innerHTML = lightboxHTML;
+    document.body.appendChild(container);
+    document.body.style.overflow = 'hidden';
+
+    const glightboxContainer = container.querySelector('.glightbox-container');
+    const closeBtn = container.querySelector('.glightbox-close');
+
+    let escapeListener = null;
+
+    const closeLightbox = () => {
+      container.remove();
+      document.body.style.overflow = '';
+      if (escapeListener) {
+        document.removeEventListener('keydown', escapeListener);
+      }
+    };
+
+    escapeListener = (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    };
+
+    closeBtn.addEventListener('click', closeLightbox);
+    glightboxContainer.addEventListener('click', (e) => {
+      if (e.target === glightboxContainer) {
+        closeLightbox();
+      }
+    });
+    document.addEventListener('keydown', escapeListener);
+  }
+
+  // ==================== FILTRAGE GALERIE ====================
+  document.addEventListener('DOMContentLoaded', function() {
+    const chips = document.querySelectorAll('.chip');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('chip-active'));
+        chip.classList.add('chip-active');
+        
+        const filter = chip.getAttribute('data-filter');
+        
+        galleryItems.forEach(item => {
+          const categories = item.getAttribute('data-category').split(' ');
+          if (categories.includes(filter)) {
+            item.style.display = 'block';
+            setTimeout(() => item.style.opacity = '1', 10);
+          } else {
+            item.style.opacity = '0';
+            setTimeout(() => item.style.display = 'none', 300);
+          }
+        });
+      });
+    });
+  });
 </script>
 
 <!-- Scripts externes -->

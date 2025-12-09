@@ -118,18 +118,158 @@ html, body {
   line-height: 1.5;
 }
 
+/* ================== COMPARISON SLIDER (LIGHTBOX) ================== */
+.comparison-lightbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-height: 90vh;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comparison-lightbox-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.comparison-lightbox-img.comparison-lightbox-before {
+  width: 100%;
+}
+
+.comparison-lightbox-img.comparison-lightbox-after {
+  width: 100%;
+  clip-path: inset(0 50% 0 0);
+}
+
+.comparison-lightbox-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: ew-resize;
+  z-index: 10;
+}
+
+.comparison-lightbox-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 4px;
+  height: 100%;
+  background: #ffc107;
+  cursor: ew-resize;
+  border: 2px solid white;
+  box-shadow: 0 0 12px rgba(255, 193, 7, 0.8);
+}
+
+.comparison-lightbox-slider::-moz-range-thumb {
+  width: 4px;
+  height: 100%;
+  background: #ffc107;
+  cursor: ew-resize;
+  border: 2px solid white;
+  box-shadow: 0 0 12px rgba(255, 193, 7, 0.8);
+  border-radius: 2px;
+}
+
+.comparison-lightbox-labels {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.comparison-lightbox-label-before {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  backdrop-filter: blur(3px);
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.comparison-lightbox-label-after {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(255, 193, 7, 0.8);
+  color: #000;
+  padding: 8px 16px;
+  border-radius: 4px;
+  backdrop-filter: blur(3px);
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+/* Curseur visuel dans la lightbox - SANS CERCLE */
+.comparison-lightbox::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0px;
+  height: 0px;
+  background: transparent;
+  border-radius: 50%;
+  border: none;
+  pointer-events: none;
+  z-index: 6;
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .comparison-lightbox {
+    max-height: 80vh;
+  }
+}
+
+/* ================== COMPARISON SLIDER (ORIGINAL) ================== */
+
 .aa-item {
   position: relative;
   overflow: hidden;
   border-radius: 12px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  touch-action: none;
+  touch-action: manipulation;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.aa-item:hover {
+  transform: translateY(-4px);
+}
+
+.aa-item[data-before]:hover {
+  box-shadow: 0 8px 24px rgba(255, 193, 7, 0.25);
 }
 
 a.glightbox {
@@ -139,7 +279,7 @@ a.glightbox {
   -webkit-user-select: none;
   user-select: none;
   width: 100%;
-  touch-action: none;
+  touch-action: manipulation;
 }
 
 a.glightbox:not(.d-none) {
@@ -153,17 +293,29 @@ a.glightbox.d-none {
   visibility: hidden;
 }
 
-.aa-img {
+.a-img {
   width: 100%;
   height: 260px;
   object-fit: cover;
-  object-position: center;
   transition: transform 0.3s ease;
   display: block;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   user-select: none;
-  touch-action: manipulation;
+  touch-action: none;
+  pointer-events: auto;
+}
+
+.aa-img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  display: block;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: none;
   pointer-events: auto;
 }
 
@@ -259,6 +411,7 @@ a.glightbox.d-none {
 /* GALLERY ITEMS */
 .gallery-item {
   transition: opacity 0.3s ease;
+  opacity: 1;
 }
 
 .gallery-item.hidden {
