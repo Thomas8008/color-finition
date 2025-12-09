@@ -6,27 +6,13 @@ AOS.init({
   offset: 80
 });
 
-// Init GLightbox avec configuration améliorée mobile
-const lightbox = GLightbox({
-  selector: '.glightbox',
+// Init GLightbox - config simple et stable
+window.glightboxInstance = GLightbox({
+  selector: '.glightbox:not(.d-none)',
   touchNavigation: true,
   loop: true,
   closeButton: true,
-  zoomable: true,
-  draggable: true,
-  autoplayVideos: true,
-  videosWidth: 900,
-  width: '90%',
-  height: 'auto'
-});
-
-// Reinitialize GLightbox après chaque changement de filtre galerie
-document.querySelectorAll('.chip').forEach(chip => {
-  chip.addEventListener('click', function() {
-    setTimeout(() => {
-      lightbox.reload();
-    }, 100);
-  });
+  keyboard: true
 });
 
 // Swiper Main
