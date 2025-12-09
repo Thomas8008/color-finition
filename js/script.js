@@ -62,6 +62,8 @@ updateTimeAgo();
 setInterval(updateTimeAgo, 60000);
 
 // ===== GESTION DU SWIPE AVANT/APRÈS =====
+let swipeInProgress = false;
+
 // Fonction pour attacher les listeners de swipe aux éléments
 function attachSwipeListeners() {
   const aaItems = document.querySelectorAll('.aa-item');
@@ -70,37 +72,45 @@ function attachSwipeListeners() {
     const links = aaItem.querySelectorAll('a.glightbox');
     if (links.length < 2) return; // Seulement si 2+ images
     
+    // Cloner l'élément pour supprimer les anciens listeners
+    const newItem = aaItem.cloneNode(true);
+    aaItem.parentNode.replaceChild(newItem, aaItem);
+    
     // Touchstart
-    aaItem.addEventListener('touchstart', function(e) {
-      const swipedItem = e.currentTarget;
+    newItem.addEventListener('touchstart', function(e) {
+      if (swipeInProgress) return;
       window.swipeStartX = e.touches[0].clientX;
       window.swipeStartY = e.touches[0].clientY;
-      window.swipeItem = swipedItem;
-    }, false);
+      window.swipeItem = newItem;
+      window.swipeTime = Date.now();
+    });
     
     // Touchend
-    aaItem.addEventListener('touchend', function(e) {
-      if (!window.swipeStartX || !window.swipeItem) return;
+    newItem.addEventListener('touchend', function(e) {
+      if (!window.swipeStartX || !window.swipeItem || window.swipeItem !== newItem) return;
       
       const endX = e.changedTouches[0].clientX;
       const endY = e.changedTouches[0].clientY;
+      const deltaTime = Date.now() - (window.swipeTime || 0);
       
       const diffX = window.swipeStartX - endX;
       const diffY = window.swipeStartY - endY;
+      const distance = Math.sqrt(diffX * diffX + diffY * diffY);
+      const velocity = distance / deltaTime;
       
-      // Vérifier que c'est un swipe horizontal
+      // Vérifier que c'est un swipe horizontal (pas vertical ou scroll)
       if (Math.abs(diffY) > Math.abs(diffX) * 0.5) {
         window.swipeStartX = null;
         return;
       }
       
-      // Seuil minimum
-      if (Math.abs(diffX) < 40) {
+      // Seuil minimum (distance ou vélocité)
+      if (Math.abs(diffX) < 30 && velocity < 0.5) {
         window.swipeStartX = null;
         return;
       }
       
-      const links = window.swipeItem.querySelectorAll('a.glightbox');
+      const links = newItem.querySelectorAll('a.glightbox');
       if (links.length < 2) {
         window.swipeStartX = null;
         return;
@@ -109,7 +119,7 @@ function attachSwipeListeners() {
       // Trouver l'image visible
       let currentIndex = 0;
       links.forEach((link, idx) => {
-        if (!link.classList.contains('d-none') && link.offsetParent !== null) {
+        if (!link.classList.contains('d-none')) {
           currentIndex = idx;
         }
       });
@@ -119,7 +129,7 @@ function attachSwipeListeners() {
       if (diffX > 0) {
         // Swipe gauche = suivant
         nextIndex = (currentIndex + 1) % links.length;
-      } else {
+      } else if (diffX < 0) {
         // Swipe droit = précédent
         nextIndex = currentIndex === 0 ? links.length - 1 : currentIndex - 1;
       }
@@ -131,13 +141,12 @@ function attachSwipeListeners() {
       }
       
       // Appliquer le changement
+      swipeInProgress = true;
       links.forEach((link, idx) => {
         if (idx === nextIndex) {
           link.classList.remove('d-none');
-          link.style.display = 'block';
         } else {
           link.classList.add('d-none');
-          link.style.display = 'none';
         }
       });
       
@@ -148,13 +157,20 @@ function attachSwipeListeners() {
         } catch(err) {}
       }
       
+      swipeInProgress = false;
       window.swipeStartX = null;
-    }, false);
+    });
   });
 }
 
 // Initialiser le swipe après un délai pour être sûr que tout est chargé
-setTimeout(attachSwipeListeners, 100);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(attachSwipeListeners, 100);
+  });
+} else {
+  setTimeout(attachSwipeListeners, 100);
+}
 
 // Filtrage galerie
 function filterGallery(filter) {

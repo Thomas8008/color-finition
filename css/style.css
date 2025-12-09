@@ -157,12 +157,13 @@ a.glightbox.d-none {
   width: 100%;
   height: 260px;
   object-fit: cover;
+  object-position: center;
   transition: transform 0.3s ease;
   display: block;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   user-select: none;
-  touch-action: none;
+  touch-action: manipulation;
   pointer-events: auto;
 }
 
