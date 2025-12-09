@@ -62,98 +62,99 @@ updateTimeAgo();
 setInterval(updateTimeAgo, 60000);
 
 // ===== GESTION DU SWIPE AVANT/APRÈS =====
-// Fonction pour initialiser le swipe après que GLightbox soit chargé
-function initSwipeSystem() {
-  // Capture des événements tactiles AVANT GLightbox
-  document.addEventListener('touchstart', function(e) {
-    // Vérifier que c'est sur une image de galerie
-    const aaItem = e.target.closest('.aa-item');
-    if (!aaItem) return;
-    
+// Fonction pour attacher les listeners de swipe aux éléments
+function attachSwipeListeners() {
+  const aaItems = document.querySelectorAll('.aa-item');
+  
+  aaItems.forEach(aaItem => {
     const links = aaItem.querySelectorAll('a.glightbox');
-    if (links.length < 2) return;
+    if (links.length < 2) return; // Seulement si 2+ images
     
-    // Stocker les données de swipe
-    window.swipeStartX = e.touches[0].clientX;
-    window.swipeStartY = e.touches[0].clientY;
-    window.swipeItem = aaItem;
-  }, true); // Capture phase pour priorité
-
-  document.addEventListener('touchend', function(e) {
-    if (!window.swipeStartX || !window.swipeItem) return;
+    // Touchstart
+    aaItem.addEventListener('touchstart', function(e) {
+      const swipedItem = e.currentTarget;
+      window.swipeStartX = e.touches[0].clientX;
+      window.swipeStartY = e.touches[0].clientY;
+      window.swipeItem = swipedItem;
+    }, false);
     
-    const endX = e.changedTouches[0].clientX;
-    const endY = e.changedTouches[0].clientY;
-    
-    const diffX = window.swipeStartX - endX;
-    const diffY = window.swipeStartY - endY;
-    
-    // Vérifier que c'est un swipe horizontal
-    if (Math.abs(diffY) > Math.abs(diffX) * 0.5) {
-      window.swipeStartX = null;
-      return;
-    }
-    
-    // Seuil minimum
-    if (Math.abs(diffX) < 40) {
-      window.swipeStartX = null;
-      return;
-    }
-    
-    const links = window.swipeItem.querySelectorAll('a.glightbox');
-    if (links.length < 2) {
-      window.swipeStartX = null;
-      return;
-    }
-    
-    // Trouver l'image visible
-    let currentIndex = 0;
-    links.forEach((link, idx) => {
-      if (!link.classList.contains('d-none') && link.offsetParent !== null) {
-        currentIndex = idx;
+    // Touchend
+    aaItem.addEventListener('touchend', function(e) {
+      if (!window.swipeStartX || !window.swipeItem) return;
+      
+      const endX = e.changedTouches[0].clientX;
+      const endY = e.changedTouches[0].clientY;
+      
+      const diffX = window.swipeStartX - endX;
+      const diffY = window.swipeStartY - endY;
+      
+      // Vérifier que c'est un swipe horizontal
+      if (Math.abs(diffY) > Math.abs(diffX) * 0.5) {
+        window.swipeStartX = null;
+        return;
       }
-    });
-    
-    // Calculer le nouvel index
-    let nextIndex = currentIndex;
-    if (diffX > 0) {
-      // Swipe gauche = suivant
-      nextIndex = (currentIndex + 1) % links.length;
-    } else {
-      // Swipe droit = précédent
-      nextIndex = currentIndex === 0 ? links.length - 1 : currentIndex - 1;
-    }
-    
-    // Éviter de changer si déjà sur la même image
-    if (nextIndex === currentIndex) {
-      window.swipeStartX = null;
-      return;
-    }
-    
-    // Appliquer le changement
-    links.forEach((link, idx) => {
-      if (idx === nextIndex) {
-        link.classList.remove('d-none');
-        link.style.display = 'block';
+      
+      // Seuil minimum
+      if (Math.abs(diffX) < 40) {
+        window.swipeStartX = null;
+        return;
+      }
+      
+      const links = window.swipeItem.querySelectorAll('a.glightbox');
+      if (links.length < 2) {
+        window.swipeStartX = null;
+        return;
+      }
+      
+      // Trouver l'image visible
+      let currentIndex = 0;
+      links.forEach((link, idx) => {
+        if (!link.classList.contains('d-none') && link.offsetParent !== null) {
+          currentIndex = idx;
+        }
+      });
+      
+      // Calculer le nouvel index
+      let nextIndex = currentIndex;
+      if (diffX > 0) {
+        // Swipe gauche = suivant
+        nextIndex = (currentIndex + 1) % links.length;
       } else {
-        link.classList.add('d-none');
-        link.style.display = 'none';
+        // Swipe droit = précédent
+        nextIndex = currentIndex === 0 ? links.length - 1 : currentIndex - 1;
       }
-    });
-    
-    // Recharger GLightbox si disponible
-    if (typeof window.glightboxInstance !== 'undefined' && window.glightboxInstance) {
-      try {
-        window.glightboxInstance.reload();
-      } catch(err) {}
-    }
-    
-    window.swipeStartX = null;
-  }, true); // Capture phase
+      
+      // Éviter de changer si déjà sur la même image
+      if (nextIndex === currentIndex) {
+        window.swipeStartX = null;
+        return;
+      }
+      
+      // Appliquer le changement
+      links.forEach((link, idx) => {
+        if (idx === nextIndex) {
+          link.classList.remove('d-none');
+          link.style.display = 'block';
+        } else {
+          link.classList.add('d-none');
+          link.style.display = 'none';
+        }
+      });
+      
+      // Recharger GLightbox si disponible
+      if (typeof window.glightboxInstance !== 'undefined' && window.glightboxInstance) {
+        try {
+          window.glightboxInstance.reload();
+        } catch(err) {}
+      }
+      
+      window.swipeStartX = null;
+    }, false);
+  });
 }
 
-// Initialiser le swipe après un délai pour être sûr que GLightbox est prêt
-setTimeout(initSwipeSystem, 100);
+// Initialiser le swipe après un délai pour être sûr que tout est chargé
+setTimeout(attachSwipeListeners, 100);
 
 // Filtrage galerie
 function filterGallery(filter) {
@@ -176,6 +177,7 @@ function filterGallery(filter) {
     setTimeout(() => {
       try {
         window.glightboxInstance.reload();
+        attachSwipeListeners(); // Réattacher les listeners après le filtrage
       } catch(e) {}
     }, 100);
   }
