@@ -315,8 +315,7 @@ a.glightbox.d-none {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   user-select: none;
-  touch-action: none;
-  pointer-events: auto;
+  pointer-events: none;
 }
 
 .aa-item:active .aa-img {
