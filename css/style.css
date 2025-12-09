@@ -1,4 +1,9 @@
 /* NAVBAR */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 .navbar-brand span {
   font-size: 1rem;
 }
@@ -8,6 +13,7 @@
   margin-right: 10px;
   font-size: 14px;
   transition: .3s;
+  padding: 0.5rem 0 !important;
 }
 
 .nav-link:hover {
@@ -16,6 +22,10 @@
 
 .navbar {
   padding: 0.5rem 0 !important;
+}
+
+.navbar-collapse {
+  margin-top: 15px;
 }
 
 /* HERO */
@@ -50,6 +60,64 @@
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
+/* Service Cards avec images de fond */
+.service-card-bg {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  min-height: 280px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-card-bg:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+}
+
+.service-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.55);
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.service-card-bg:hover .service-overlay {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.service-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+  color: white;
+}
+
+.service-content i {
+  color: #ffc107 !important;
+}
+
+.service-content h3 {
+  color: white;
+  margin-bottom: 15px;
+}
+
+.service-content p {
+  color: #f0f0f0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
 .aa-item {
   position: relative;
   overflow: hidden;
@@ -61,10 +129,24 @@
   height: 260px; /* même taille partout */
   object-fit: cover;
   transition: transform .4s ease;
+  display: block;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .aa-item:hover .aa-img {
   transform: scale(1.06);
+}
+
+@media (max-width: 768px) {
+  .aa-img {
+    height: 200px;
+  }
+  
+  .aa-item:hover .aa-img {
+    transform: scale(1.02);
+  }
 }
 
 .aa-label {
@@ -79,5 +161,291 @@
   backdrop-filter: blur(3px);
 }
 
+/* CHIPS FILTRAGE */
+.chip {
+  padding: 8px 16px;
+  border: 2px solid #ffc107;
+  background: transparent;
+  color: #ffc107;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
 
-html, body { width:100%; overflow-x:hidden; }
+.chip:hover {
+  background: #ffc107;
+  color: #1a1a1a;
+}
+
+.chip-active {
+  background: #ffc107;
+  color: #1a1a1a;
+}
+
+/* GALLERY ITEMS */
+.gallery-item {
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item.hidden {
+  display: none;
+}
+
+.category-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 8px;
+  background: #ffc107;
+  color: #1a1a1a;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+
+/* Carrousel Avis */
+.avis-carousel {
+  position: relative;
+  width: 100%;
+  min-height: 250px;
+  margin-bottom: 30px;
+}
+
+.avis-slide {
+  display: none;
+  animation: fadeIn 0.5s;
+}
+
+.avis-slide.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.avis-container {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid #e8e8e8;
+}
+
+.avis-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.avis-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.2);
+}
+
+.avis-head {
+  flex: 1;
+}
+
+.avis-author {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #202124;
+}
+
+.avis-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  font-size: 13px;
+  color: #80868b;
+}
+
+.avis-stars {
+  color: #ffc107;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.avis-text {
+  font-size: 15px;
+  color: #202124;
+  line-height: 1.6;
+  margin: 0 0 12px 0;
+}
+
+.avis-bottom {
+  font-size: 13px;
+  color: #80868b;
+  margin: 0;
+}
+
+/* Contrôles */
+.avis-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.avis-btn {
+  background: #f8f9fa;
+  border: 1px solid #d3d3d3;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  color: #5f6368;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avis-btn:hover {
+  background: #ffc107;
+  color: white;
+  border-color: #ffc107;
+  transform: scale(1.1);
+}
+
+.avis-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d3d3d3;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: #ffc107;
+  width: 28px;
+  border-radius: 5px;
+}
+
+.dot:hover {
+  background: #ffc107;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .nav-link {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 8px 0 !important;
+  }
+  
+  .btn.btn-warning {
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Body & Overflow */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Navbar Mobile */
+  .navbar-brand span {
+    font-size: 0.85rem;
+  }
+  
+  .nav-link {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 10px 0 !important;
+    font-size: 13px;
+  }
+  
+  .navbar-collapse {
+    margin-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  /* Service Cards */
+  .service-card-bg {
+    min-height: 200px;
+  }
+
+  .service-content {
+    padding: 12px;
+  }
+
+  .service-content h3 {
+    font-size: 15px;
+  }
+
+  .service-content p {
+    font-size: 11px;
+  }
+
+  /* Galerie */
+  .aa-label {
+    font-size: 12px;
+    padding: 4px 8px;
+    bottom: 8px;
+    left: 8px;
+  }
+  
+  .category-badge {
+    font-size: 10px;
+    padding: 3px 6px;
+    top: 8px;
+    right: 8px;
+  }
+
+  .avis-container {
+    padding: 12px;
+  }
+
+  .avis-controls {
+    gap: 12px;
+  }
+
+  .avis-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+  
+  .avis-avatar {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+  
+  .avis-author {
+    font-size: 15px;
+  }
+  
+  .avis-text {
+    font-size: 14px;
+  }
+}
