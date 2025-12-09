@@ -152,16 +152,8 @@ function initSwipeSystem() {
   }, true); // Capture phase
 }
 
-// Initialiser le swipe après que la page soit complètement chargée
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initSwipeSystem);
-} else {
-  // La page est déjà chargée (après un refresh)
-  initSwipeSystem();
-}
-
-// Aussi initialiser après un délai pour être sûr que GLightbox est prêt
-setTimeout(initSwipeSystem, 500);
+// Initialiser le swipe après un délai pour être sûr que GLightbox est prêt
+setTimeout(initSwipeSystem, 100);
 
 // Filtrage galerie
 function filterGallery(filter) {

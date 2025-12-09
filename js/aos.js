@@ -9,7 +9,7 @@ AOS.init({
 // Init GLightbox - config simple et stable
 window.glightboxInstance = GLightbox({
   selector: '.glightbox:not(.d-none)',
-  touchNavigation: true,
+  touchNavigation: false,
   loop: true,
   closeButton: true,
   keyboard: true
