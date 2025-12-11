@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://colorfinition.netlify.app/sitemap.xml
