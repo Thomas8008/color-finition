@@ -1,3 +1,10 @@
+# --------- Redirection du sous-domaine Netlify ----------
+[[redirects]]
+  from = "https://colorfinition.netlify.app/*"
+  to = "https://color-finition.fr/:splat"
+  status = 301
+  force = true
+
 # --------- Sécurité (headers globaux) ----------
 # --------- Sécurité (headers globaux) ----------
 [[headers]]
