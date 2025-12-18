@@ -1,4 +1,5 @@
 # Redirection du sous-domaine Netlify vers le domaine principal
-https://colorfinition.netlify.app/* https://color-finition.fr/:splat 301
-
 /*    /index.html   200
+
+# Domain redirect
+https://colorfinition.netlify.app* https://color-finition.fr 301!
