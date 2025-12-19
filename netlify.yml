@@ -5,8 +5,16 @@
   status = 301
   force = true
 
+# --------- Noindex pour netlify.app ----------
+[[headers]]
+  for = "/*"
+  [headers.values]
+  X-Robots-Tag = "noindex, nofollow"
+  [headers.condition]
+  Host = "colorfinition.netlify.app"
+
 # --------- Sécurité (headers globaux) ----------
-# --------- Sécurité (headers globaux) ----------
+---------
 [[headers]]
   for = "/*"
   [headers.values]
