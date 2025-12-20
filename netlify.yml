@@ -14,8 +14,15 @@
   [headers.condition]
   Host = "colorfinition.netlify.app"
 
+# --------- Header canonical pour .fr ----------
+[[headers]]
+  for = "/"
+  [headers.values]
+  Link = "<https://color-finition.fr/>; rel=\"canonical\""
+  [headers.condition]
+  Host = "color-finition.fr"
+
 # --------- Sécurité (headers globaux) ----------
----------
 [[headers]]
   for = "/*"
   [headers.values]
