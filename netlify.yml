@@ -5,11 +5,12 @@
   status = 301
   force = true
 
-# --------- Noindex pour netlify.app ----------
+# --------- Noindex + Canonical pour netlify.app ----------
 [[headers]]
   for = "/*"
   [headers.values]
   X-Robots-Tag = "noindex, nofollow"
+  Link = "</sitemap.xml>; rel=\"sitemap\""
   [headers.condition]
   Host = "colorfinition.netlify.app"
 
